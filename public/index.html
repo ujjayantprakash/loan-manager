@@ -1,0 +1,28 @@
+<form id="loanForm">
+  <input type="text" name="name" placeholder="Name" required />
+  <input type="email" name="email" placeholder="Email" required />
+  <input type="number" name="loanAmount" placeholder="Loan Amount" required />
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+  document.getElementById('loanForm').addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const formData = {
+      name: this.name.value,
+      email: this.email.value,
+      loanAmount: this.loanAmount.value
+    };
+
+    const response = await fetch('/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    });
+
+    const result = await response.json();
+    alert(result.message);
+  });
+</script>
+

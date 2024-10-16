@@ -1,0 +1,19 @@
+<div id="dashboard">
+  <p>Total Applications: <span id="totalApplications"></span></p>
+  <p>Total Approved: <span id="totalApproved"></span></p>
+  <p>Total Loan Amount: <span id="totalLoanAmount"></span></p>
+</div>
+
+<script>
+  async function loadDashboard() {
+    const response = await fetch('/api/dashboard');
+    const data = await response.json();
+
+    document.getElementById('totalApplications').innerText = data.totalApplications;
+    document.getElementById('totalApproved').innerText = data.totalApproved;
+    document.getElementById('totalLoanAmount').innerText = data.totalLoanAmount;
+  }
+
+  loadDashboard();
+</script>
+
